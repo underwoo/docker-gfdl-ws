@@ -1,0 +1,29 @@
+#%Module1.0
+
+conflict fre
+
+set modName [split [module-info name] '/']
+set pkgName [lindex $modName 0]
+set pkgVersion [lindex $modName 1]
+
+setenv FRE_SYSTEM_MODULEFILES_DIR /home/fms/local/modulefiles
+setenv FRE_SYSTEM_SITE "gfdl-ws"
+setenv FRE_SYSTEM_SITES "gfdl-ws:gfdl:ncrc:ncrc3:ncrc4:theia:selene"
+setenv FRE_SYSTEM_TMP /tmp
+
+set pkgHome /home/fms/local/opt/fre-commands/${pkgVersion}
+
+prepend-path PATH ${pkgHome}/bin:${pkgHome}/sbin:${pkgHome}/site/gfdl-ws/bin
+prepend-path PERL5LIB ${pkgHome}/lib
+prepend-path MANPATH ${pkgHome}/man
+
+setenv FRE_COMMANDS_HOME ${pkgHome}
+setenv FRE_COMMANDS_VERSION ${pkgVersion}
+
+#FRE-NCtools
+set pkgHome /home/fms/local/opt/fre-nctools/${pkgVersion}
+
+prepend-path PATH ${pkgHome}/gfdl-ws/bin
+
+setenv FRE_NCTOOLS_HOME ${pkgHome}
+setenv FRE_NCTOOLS_VERSION ${pkgVersion}
